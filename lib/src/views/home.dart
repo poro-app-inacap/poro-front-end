@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-class Home extends StatelessWidget {
+class Home extends StatelessWidget  {
 
   const Home({super.key});
 
@@ -9,28 +9,28 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        leading: const IconButton(
-          icon: Icon(Icons.menu),
-          tooltip: 'Navigation menu',
-          onPressed: null,
-        ),
-        title: const Text('Example title'),
-        actions: const [
-          IconButton(
-            icon: Icon(Icons.search),
-            tooltip: 'Search',
-            onPressed: null,
+        centerTitle: true,
+        titleSpacing: 12,
+        title: const Text("My poro"),
+      ),
+
+      body: Container(
+        alignment: Alignment.center,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/poro_2.png"),
+            fit: BoxFit.cover,
           ),
-        ],
-      ),
-      // body is the majority of the screen.
-      body: const Center(
-        child: Text('Hello, world!'),
-      ),
-      floatingActionButton: const FloatingActionButton(
-        tooltip: 'Add', // used by assistive technologies
-        onPressed: null,
-        child: Icon(Icons.add),
+        ),
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, ''),
+              child: const Text("Play"),
+            ),
+            const Text("Cargando"),
+          ],
+        ),
       ),
     );
   }

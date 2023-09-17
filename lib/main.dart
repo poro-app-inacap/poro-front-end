@@ -1,22 +1,40 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
+import 'package:poro_front_end/src/views/load_screen.dart';
 import 'package:poro_front_end/src/views/home.dart';
+import 'package:go_router/go_router.dart';
 
-void main(){
-
-  var route = {
-    '/': (context) => Home(),
-    '/user/settings': (context) => Home(),
-    '/poro/controller': (context) => Home(),
-    '/poro/selector': (context) => Home()
-  };
-
-  runApp(
-    MaterialApp(
-      title: "Poro App",
-      initialRoute: '/',
-      routes: route
+final GoRouter _router = GoRouter(
+  initialLocation: "/loading_screen",
+  routes: <RouteBase>[
+    GoRoute(
+      path: '/',
+      builder: (BuildContext context, GoRouterState state) {
+        return const Home();
+      },
+      routes: <RouteBase>[
+        GoRoute(
+          path: 'loading_screen',
+          builder: (BuildContext context, GoRouterState state) {
+            return const LoadScreen();
+          },
+        ),
+      ],
     ),
-  );
+  ],
+);
+
+class App extends StatelessWidget {
+  const App({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      routerConfig: _router,
+    );
+  }
+}
+
+void main() {
+  const app = App();
+  runApp(app);
 }
